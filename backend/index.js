@@ -8,11 +8,11 @@ const connectDB = async()=>{
         await mongoose.connect()
         
     } catch (err) {
-        console.log("some err")
+        console.log(err)
         
     }
 }
 
 app.listen(5000, ()=>{
-    console.log("App")
+    console.log("App is runnig on port 5000")
 })
