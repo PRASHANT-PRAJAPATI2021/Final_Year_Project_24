@@ -28,6 +28,18 @@ const connectDB = async()=>{
     }
 }
 
-app.listen(5000, ()=>{
-    console.log("App")
+// middlewares
+dotenv.config()
+app.use(express.json())
+app.use(cookieParser())
+app.use("/api/auth",authRoute)
+app.use("/api/users",userRoute)
+app.use("/api/posts",postRoute)
+app.use("/api/comments",commentRoute)
+
+
+
+app.listen(process.env.PORT, ()=>{
+    connectDB()
+    console.log("App is running in prot 5000")
 })
