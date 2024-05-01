@@ -3,16 +3,18 @@ import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios';
 import { URL } from '../url';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
     const {user,setUser}=useContext(UserContext)
-   
+    const navigate=useNavigate()
     const handleLogout=async()=>{
 
       try {
           const res=await axios.get(URL+"/api/auth/logout",{withCredentials:true})
           console.log(res);
           setUser(null)
+          navigate("/login")
           
       } catch (err) {
           console.log(err);
@@ -25,7 +27,7 @@ const Menu = () => {
       {!user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer'>Login</h3>}
       {!user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Register</h3>}
       {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Profile</h3>}
-      {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Write</h3>}
+      {user && <h3  className='text-white text-sm hover:text-gray-500 cursor-pointer '>Write</h3>}
       {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>My Blogs</h3>}
       {user && <h3 onClick={handleLogout} className='text-white text-sm hover:text-gray-500 cursor-pointer '>Logout</h3>}
     </div>
