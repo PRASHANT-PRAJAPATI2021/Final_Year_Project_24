@@ -9,12 +9,14 @@ const Register = () => {
     const[email, setEmail]=useState("")
     const[password, setPassword]=useState("")
     const[error, setError]=useState(false)
-
+    
+   
     const navigate=useNavigate()
     
     const handleRegister= async()=>{
           try{
             const res= await axios.post(URL+"/api/auth/register",{username,email,password})
+            // console.log(res.data);
             setUsername(res.data.username)
             setEmail(res.data.email)
             setPassword(res.data.password)
@@ -30,7 +32,7 @@ const Register = () => {
     return (
         <>
             <div className="flex items-center justify-between px-6 md:px-[200px] py-4">
-                <h1 className="text-lg md:text-xl font-extrabold"><Link to="/">Blog Market</Link></h1>
+                <h1 className="text-lg md:text-xl font-extrabold"><Link to="/">Interview Insights</Link></h1>
                 <h3><Link to="/login">Login</Link></h3>
 
             </div>
