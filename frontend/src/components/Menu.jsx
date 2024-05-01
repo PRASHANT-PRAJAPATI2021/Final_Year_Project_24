@@ -26,7 +26,7 @@ const Menu = () => {
       {!user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Register</h3>}
       {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Profile</h3>}
       {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>Write</h3>}
-      {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>My Blogs</h3>}
+      {user && <h3 className='text-white text-sm hover:text-gray-500 cursor-pointer '>My Posts</h3>}
       {user && <h3 onClick={handleLogout} className='text-white text-sm hover:text-gray-500 cursor-pointer '>Logout</h3>}
     </div>
   )
