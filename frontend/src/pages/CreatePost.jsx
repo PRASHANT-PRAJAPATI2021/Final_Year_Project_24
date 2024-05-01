@@ -6,6 +6,9 @@ import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 import { URL } from '../url'
 import { useNavigate } from 'react-router-dom'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import this CSS for 'snow' theme styling
+
 
 const CreatePost = () => {
     const [title,setTitle]=useState("")
@@ -59,8 +62,8 @@ const CreatePost = () => {
            //post upload
         // console.log(post)
         try{
-            const res=await axios.post(URL+"/api/posts/create",post,{withCredentials:true})
-            navigate("/posts/post/"+res.data._id)
+            const res=await axios.post(`${URL}/api/posts/create`,post,{withCredentials:true});
+            navigate(`/posts/post/${res.data._id}`);
             // console.log(res.data)
   
           }
@@ -93,7 +96,7 @@ const CreatePost = () => {
                             ))}
                         </div>
                     </div>
-                    <textarea onChange={(e)=>setDesc(e.target.value)} className='px-4 py-2 outline-none' placeholder='Enter post description' />
+                    <ReactQuill theme="snow" value={desc} onChange={setDesc} />
                     <button onClick={handleCreate} className='bg-black w-full md:w-[20%] mx-auto text-white font-semibold px-4 py-2 md:text-xl rounded-lg text-lg'>Create</button>
                 </form>
 
