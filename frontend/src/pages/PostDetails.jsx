@@ -77,7 +77,7 @@ const PostDetails = () => {
 
 
         </div>
-        <img src={IF + post.photo} className="object-cover h-48 w-full mx-auto mt-8" alt="" />
+        <img src={IF + post.photo} className=" h-48 w-full mx-auto mt-8" alt="" />
         {/* <p className="mx-auto mt-4">{post.desc}</p> */}
         <p className="mx-auto mt-4" dangerouslySetInnerHTML={createMarkup(post.desc)}></p>
         <div className="flex items-center mt-8 space-x-4 font-semibold">
