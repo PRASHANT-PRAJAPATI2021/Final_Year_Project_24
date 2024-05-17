@@ -9,6 +9,7 @@ import axios from "axios";
 import { URL, IF } from "../url";
 import { UserContext } from "../context/UserContext";
 import Loader from "../components/Loader";
+import DOMPurify from 'dompurify';
 
 const PostDetails = () => {
   const postId = useParams().id;
@@ -19,6 +20,7 @@ const PostDetails = () => {
   const [comment, setComment] = useState("");
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+
   const fetchPost = async () => {
     setLoader(true);
     try {
@@ -81,7 +83,10 @@ const PostDetails = () => {
          console.log(err)
     }
 
-  }
+  };
+  const createMarkup = (htmlContent) => {
+    return { __html: DOMPurify.sanitize(htmlContent) };
+  };
 
   return (
     <div>
@@ -118,7 +123,8 @@ const PostDetails = () => {
             </div>
           </div>
           <img src={IF + post.photo} className="w-full mx-auto mt-8" alt="" />
-          <p className="mx-auto mt-8">{post.desc}</p>
+          {/* <p className="mx-auto mt-8">{post.desc}</p> */}
+          <div className="mx-auto mt-8" dangerouslySetInnerHTML={createMarkup(post.desc)}></div>
           <div className="flex items-center mt-8 space-x-4 font-semibold">
             <p>Categories:</p>
             <div className="flex justify-center items-center space-x-2">
